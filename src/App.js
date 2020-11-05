@@ -1,25 +1,39 @@
-import logo from './logo.svg';
+import { Component } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Header } from './components/Header/Header';
+import { Home } from './components/Home/Home';
+import { About } from './components/About/About';
+import { Restaurants } from './components/Restaurants/Restaurants';
+
+class App extends Component {
+
+    state = {
+        users: [
+            { name: 'Max', age: 28, id: 0 },
+            { name: 'Manu', age: 25, id: 1 },
+            { name: 'Marta', age: 30, id: 2 },
+        ]
+    }
+
+    render() {
+        return(
+            <BrowserRouter>
+                <div className="App">
+                    <Header />
+
+                    <Switch>
+                        <Route path="/" exact component={ Home }/>
+
+                        <Route path="/about" component={ About }/>
+
+                        <Route path="/restaurants" component={ Restaurants } />
+                    </Switch>
+                </div>
+            </BrowserRouter>
+        )
+    }
 }
 
 export default App;
